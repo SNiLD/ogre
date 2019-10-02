@@ -55,6 +55,7 @@ namespace Ogre
 	            mBitDepth = 24;
 	            break;
             case GL_DEPTH_COMPONENT32:
+            case GL_DEPTH_COMPONENT32F:
                 mBitDepth = 32;
                 break;
             }
