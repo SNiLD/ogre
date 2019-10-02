@@ -40,7 +40,7 @@ CompositionPass::CompositionPass(CompositionTargetPass *parent):
     mClearBuffers(FBT_COLOUR|FBT_DEPTH),
     mClearColour(ColourValue::ZERO),
     mAutomaticColour(false),
-    mClearDepth(1.0f),
+    mClearDepth(OGRE_DEPTH_CLEAR),
     mClearStencil(0),
     mStencilCheck(false),
     mStencilFunc(CMPF_ALWAYS_PASS),

@@ -124,8 +124,8 @@ namespace Ogre {
          @param stencil The stencil value to clear to, if FBT_STENCIL is included
         */
         void clear(unsigned int buffers = FBT_COLOUR | FBT_DEPTH,
-                   const ColourValue& colour = ColourValue::Black, 
-                   Real depth = 1.0f, unsigned short stencil = 0);
+                   const ColourValue& colour = ColourValue::Black,
+                   Real depth = OGRE_DEPTH_CLEAR, unsigned short stencil = 0);
 
         /** Retrieves a pointer to the render target for this viewport.
         */

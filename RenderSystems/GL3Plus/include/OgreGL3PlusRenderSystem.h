@@ -199,13 +199,13 @@ namespace Ogre {
 
         void _setCullingMode(CullingMode mode);
 
-        void _setDepthBufferParams(bool depthTest = true, bool depthWrite = true, CompareFunction depthFunction = CMPF_LESS_EQUAL);
+        void _setDepthBufferParams(bool depthTest = true, bool depthWrite = true, CompareFunction depthFunction = OGRE_DEPTH_FUNCTION);
 
         void _setDepthBufferCheckEnabled(bool enabled = true);
 
         void _setDepthBufferWriteEnabled(bool enabled = true);
 
-        void _setDepthBufferFunction(CompareFunction func = CMPF_LESS_EQUAL);
+        void _setDepthBufferFunction(CompareFunction func = OGRE_DEPTH_FUNCTION);
 
         void _setDepthBias(float constantBias, float slopeScaleBias);
 
@@ -237,11 +237,17 @@ namespace Ogre {
 
         void _render(const RenderOperation& op);
 
+#ifdef OGRE_CONFIG_ENABLE_REVERSE_Z_BUFFER
+        Real getMinimumDepthInputValue(void); // Range [0.0f, 1.0f]
+        Real getMaximumDepthInputValue(void); // Range [0.0f, 1.0f]
+        void _convertProjectionMatrix(const Matrix4& matrix, Matrix4& dest, bool);
+#endif
+
         void setScissorTest(bool enabled, size_t left = 0, size_t top = 0, size_t right = 800, size_t bottom = 600);
 
         void clearFrameBuffer(unsigned int buffers,
                               const ColourValue& colour = ColourValue::Black,
-                              Real depth = 1.0f, unsigned short stencil = 0);
+                              Real depth = OGRE_DEPTH_CLEAR, unsigned short stencil = 0);
         HardwareOcclusionQuery* createHardwareOcclusionQuery(void);
         OGRE_MUTEX(mThreadInitMutex);
         void registerThread();

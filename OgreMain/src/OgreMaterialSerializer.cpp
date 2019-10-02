@@ -560,7 +560,7 @@ namespace Ogre
 
             //depth function
             if (mDefaults ||
-                pPass->getDepthFunction() != CMPF_LESS_EQUAL)
+                pPass->getDepthFunction() != OGRE_DEPTH_FUNCTION)
             {
                 writeAttribute(3, "depth_func");
                 writeCompareFunction(pPass->getDepthFunction());

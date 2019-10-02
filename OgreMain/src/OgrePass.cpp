@@ -145,7 +145,7 @@ namespace Ogre {
         , mPointAttenuationEnabled(false)
         , mContentTypeLookupBuilt(false)
         , mAlphaRejectVal(0)
-        , mDepthFunc(CMPF_LESS_EQUAL)
+        , mDepthFunc(OGRE_DEPTH_FUNCTION)
         , mDepthBiasConstant(0.0f)
         , mDepthBiasSlopeScale(0.0f)
         , mDepthBiasPerIteration(0.0f)

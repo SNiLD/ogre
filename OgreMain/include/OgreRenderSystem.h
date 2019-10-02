@@ -749,7 +749,7 @@ namespace Ogre
         If false, the depth buffer is left unchanged even if a new pixel is written.
         @param depthFunction Sets the function required for the depth test.
         */
-        virtual void _setDepthBufferParams(bool depthTest = true, bool depthWrite = true, CompareFunction depthFunction = CMPF_LESS_EQUAL) = 0;
+        virtual void _setDepthBufferParams(bool depthTest = true, bool depthWrite = true, CompareFunction depthFunction = OGRE_DEPTH_FUNCTION) = 0;
 
         /** Sets whether or not the depth buffer check is performed before a pixel write.
         @param enabled If true, the depth buffer is tested for each pixel and the frame buffer is only updated
@@ -768,7 +768,7 @@ namespace Ogre
         @param  func The comparison between the new depth and the existing depth which must return true
         for the new pixel to be written.
         */
-        virtual void _setDepthBufferFunction(CompareFunction func = CMPF_LESS_EQUAL) = 0;
+        virtual void _setDepthBufferFunction(CompareFunction func = OGRE_DEPTH_FUNCTION) = 0;
         /// @deprecated use setColourBlendState
         virtual void _setColourBufferWriteEnabled(bool red, bool green, bool blue, bool alpha) = 0;
         /** Sets the depth bias, NB you should use the Material version of this. 
@@ -1050,7 +1050,7 @@ namespace Ogre
         */
         virtual void clearFrameBuffer(unsigned int buffers, 
             const ColourValue& colour = ColourValue::Black, 
-            Real depth = 1.0f, unsigned short stencil = 0) = 0;
+            Real depth = OGRE_DEPTH_CLEAR, unsigned short stencil = 0) = 0;
         /** Returns the horizontal texel offset value required for mapping 
         texel origins to pixel origins in this rendersystem.
         @remarks

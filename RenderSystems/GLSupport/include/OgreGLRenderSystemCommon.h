@@ -123,7 +123,7 @@ namespace Ogre {
 
         void _convertProjectionMatrix(const Matrix4& matrix, Matrix4& dest, bool)
         {
-            // no conversion request for OpenGL
+            // no conversion required for OpenGL
             dest = matrix;
         }
 

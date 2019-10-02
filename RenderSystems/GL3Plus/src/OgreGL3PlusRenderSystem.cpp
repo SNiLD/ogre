@@ -527,6 +527,10 @@ namespace Ogre {
         // Create the texture manager
         mTextureManager = new GL3PlusTextureManager(this);
 
+#ifdef OGRE_CONFIG_ENABLE_REVERSE_Z_BUFFER
+        glClipControl(GL_LOWER_LEFT, GL_ZERO_TO_ONE);
+#endif
+
         mGLInitialised = true;
     }
 
@@ -1134,7 +1138,7 @@ namespace Ogre {
     {
         if (enabled)
         {
-            mStateCacheManager->setClearDepth(1.0f);
+            mStateCacheManager->setClearDepth(OGRE_DEPTH_CLEAR);
         }
         mStateCacheManager->setEnabled(GL_DEPTH_TEST, enabled);
     }
@@ -1368,7 +1372,14 @@ namespace Ogre {
 
         if (!program)
         {
-            LogManager::getSingleton().logError("Failed to create shader program.");
+            Ogre::String materialName;
+
+            if (op.srcRenderable && op.srcRenderable->getMaterial())
+            {
+                materialName = op.srcRenderable->getMaterial()->getName();
+            }
+
+            LogManager::getSingleton().logError("Failed to create shader program for material '" + materialName + "'.");
         }
 
         GLVertexArrayObject* vao =
@@ -1571,6 +1582,28 @@ namespace Ogre {
         // VAOs > 0 are selected each time before usage
         // VAO #0 is not supported in Core profiles, and WOULD NOT be used by Ogre even in compatibility profiles
     }
+
+#ifdef OGRE_CONFIG_ENABLE_REVERSE_Z_BUFFER
+    Real GL3PlusRenderSystem::getMinimumDepthInputValue(void)
+    {
+        return 1.0f;
+    }
+
+    Real GL3PlusRenderSystem::getMaximumDepthInputValue(void)
+    {
+        return 0.0f;
+    }
+
+    void GL3PlusRenderSystem::_convertProjectionMatrix(const Matrix4& matrix, Matrix4& dest, bool)
+    {
+        dest = matrix;
+        // Convert depth range from [-1,+1] to [0,1]
+        dest[2][0] = (dest[2][0] + dest[3][0]) * 0.5f;
+        dest[2][1] = (dest[2][1] + dest[3][1]) * 0.5f;
+        dest[2][2] = (dest[2][2] + dest[3][2]) * 0.5f;
+        dest[2][3] = (dest[2][3] + dest[3][3]) * 0.5f;
+    }
+#endif
 
     void GL3PlusRenderSystem::setScissorTest(bool enabled, size_t left,
                                              size_t top, size_t right,

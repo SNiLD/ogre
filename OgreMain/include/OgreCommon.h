@@ -68,7 +68,7 @@ namespace Ogre {
         CMPF_EQUAL,        //!< Write if (new_Z == existing_Z)
         CMPF_NOT_EQUAL,    //!< Write if (new_Z != existing_Z)
         CMPF_GREATER_EQUAL,//!< Write if (new_Z >= existing_Z)
-        CMPF_GREATER       //!< Write if (new_Z >= existing_Z)
+        CMPF_GREATER       //!< Write if (new_Z > existing_Z)
     };
 
     /** High-level filtering options providing shortcuts to settings the

@@ -42,7 +42,7 @@ namespace Ogre {
         // Actual dimensions will update later
         , mZOrder(ZOrder)
         , mBackColour(ColourValue::Black)
-        , mDepthClearValue(1)
+        , mDepthClearValue(OGRE_DEPTH_CLEAR)
         , mClearEveryFrame(true)
         , mClearBuffers(FBT_COLOUR | FBT_DEPTH)
         , mUpdated(false)

@@ -379,6 +379,7 @@ cmake_dependent_option(OGRE_CONFIG_ENABLE_GLES2_GLSL_OPTIMISER "Enable GLSL opti
 cmake_dependent_option(OGRE_CONFIG_ENABLE_GL_STATE_CACHE_SUPPORT "Enable OpenGL state cache management" FALSE "OGRE_BUILD_RENDERSYSTEM_GL OR OGRE_BUILD_RENDERSYSTEM_GLES2 OR OGRE_BUILD_RENDERSYSTEM_GL3PLUS" FALSE)
 cmake_dependent_option(OGRE_CONFIG_ENABLE_GLES3_SUPPORT "Enable OpenGL ES 3.x Features" FALSE "OPENGLES3_FOUND;OGRE_BUILD_RENDERSYSTEM_GLES2" FALSE)
 option(OGRE_CONFIG_ENABLE_TBB_SCHEDULER "Enable TBB's scheduler initialisation/shutdown." TRUE)
+option(OGRE_CONFIG_ENABLE_REVERSE_Z_BUFFER "Build with reverse Z-buffer to improve precision on large scenes (OpenGL3+ only)" FALSE)
 # Customise what to install
 option(OGRE_INSTALL_CMAKE "Install CMake scripts." TRUE)
 option(OGRE_INSTALL_SAMPLES "Install Ogre demos." TRUE)
@@ -406,6 +407,14 @@ if (MSVC)
 	option(OGRE_PROJECT_FOLDERS "Organize project into project folders." TRUE)
 endif ()
 
+if (OGRE_CONFIG_ENABLE_REVERSE_Z_BUFFER)
+    set(OGRE_DEPTH_CLEAR "0.0f")
+    set(OGRE_DEPTH_FUNCTION "CMPF_GREATER_EQUAL")
+else ()
+    set(OGRE_DEPTH_CLEAR "1.0f")
+    set(OGRE_DEPTH_FUNCTION "CMPF_LESS_EQUAL")
+endif ()
+
 # hide advanced options
 mark_as_advanced(
   OGRE_BUILD_RTSHADERSYSTEM_CORE_SHADERS
@@ -424,6 +433,7 @@ mark_as_advanced(
   OGRE_CONFIG_ENABLE_GLES2_GLSL_OPTIMISER
   OGRE_CONFIG_ENABLE_GLES3_SUPPORT
   OGRE_CONFIG_ENABLE_TBB_SCHEDULER
+  OGRE_CONFIG_ENABLE_REVERSE_Z_BUFFER
   OGRE_INSTALL_SAMPLES_SOURCE
   OGRE_PROFILING
   OGRE_CONFIG_STATIC_LINK_CRT

@@ -727,7 +727,7 @@ namespace Ogre {
 
             If depth checking is enabled (see setDepthCheckEnabled) a comparison occurs between the depth
             value of the pixel to be written and the current contents of the buffer. This comparison is
-            normally Ogre::CMPF_LESS_EQUAL.
+            normally OGRE_DEPTH_FUNCTION.
         */
         void setDepthFunction( CompareFunction func );
         /** Returns the function used to compare depth values when depth checking is on.

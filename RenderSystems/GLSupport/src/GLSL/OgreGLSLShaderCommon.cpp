@@ -167,6 +167,14 @@ namespace Ogre {
         , mLinked(0)
         , mShaderID(++mShaderCount) // Increase shader counter and use as ID
     {
+#ifdef OGRE_CONFIG_ENABLE_REVERSE_Z_BUFFER
+        if (!mConstantPreprocessorDefines.empty())
+            mConstantPreprocessorDefines += ";";
+
+        mConstantPreprocessorDefines += "REVERSE_Z_BUFFER";
+
+        setPreprocessorDefines(mPreprocessorDefines);
+#endif
     }
     //-----------------------------------------------------------------------
     String GLSLShaderCommon::CmdAttach::doGet(const void *target) const

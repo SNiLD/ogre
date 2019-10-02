@@ -146,11 +146,11 @@ namespace Ogre {
         @note applies when PassType is CLEAR
         */
         bool getAutomaticColour() const;
-        /** Set the viewport clear depth (defaults to 1.0) 
+        /** Set the viewport clear depth (defaults to OGRE_DEPTH_CLEAR)
             @note applies when PassType is CLEAR
         */
         void setClearDepth(Real depth);
-        /** Get the viewport clear depth (defaults to 1.0) 
+        /** Get the viewport clear depth (defaults to OGRE_DEPTH_CLEAR)
             @note applies when PassType is CLEAR
         */
         Real getClearDepth() const;

@@ -227,7 +227,7 @@ namespace Ogre {
             - DestBlendFactor = Ogre::SBF_ZERO (no blend, replace with new colour)
             - Depth buffer checking on
             - Depth buffer writing on
-            - Depth buffer comparison function = Ogre::CMPF_LESS_EQUAL
+            - Depth buffer comparison function = Ogre::OGRE_DEPTH_FUNCTION
             - Colour buffer writing on for all channels
             - Culling mode = Ogre::CULL_CLOCKWISE
             - Ambient lighting = ColourValue(0.5, 0.5, 0.5) (mid-grey)

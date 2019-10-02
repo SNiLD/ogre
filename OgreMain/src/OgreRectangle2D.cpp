@@ -142,19 +142,35 @@ namespace Ogre {
 
         *pFloat++ = left;
         *pFloat++ = top;
+#ifdef OGRE_CONFIG_ENABLE_REVERSE_Z_BUFFER
+        *pFloat++ = 0.0f;
+#else
         *pFloat++ = -1;
+#endif
 
         *pFloat++ = left;
         *pFloat++ = bottom;
+#ifdef OGRE_CONFIG_ENABLE_REVERSE_Z_BUFFER
+        *pFloat++ = 0.0f;
+#else
         *pFloat++ = -1;
+#endif
 
         *pFloat++ = right;
         *pFloat++ = top;
+#ifdef OGRE_CONFIG_ENABLE_REVERSE_Z_BUFFER
+        *pFloat++ = 0.0f;
+#else
         *pFloat++ = -1;
+#endif
 
         *pFloat++ = right;
         *pFloat++ = bottom;
+#ifdef OGRE_CONFIG_ENABLE_REVERSE_Z_BUFFER
+        *pFloat++ = 0.0f;
+#else
         *pFloat++ = -1;
+#endif
 
         if(updateAABB)
         {

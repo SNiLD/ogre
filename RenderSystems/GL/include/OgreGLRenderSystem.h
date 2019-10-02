@@ -269,7 +269,7 @@ namespace Ogre {
 
         void _setCullingMode(CullingMode mode);
 
-        void _setDepthBufferParams(bool depthTest = true, bool depthWrite = true, CompareFunction depthFunction = CMPF_LESS_EQUAL);
+        void _setDepthBufferParams(bool depthTest = true, bool depthWrite = true, CompareFunction depthFunction = OGRE_DEPTH_FUNCTION);
 
         void _setDepthBufferCheckEnabled(bool enabled = true);
 

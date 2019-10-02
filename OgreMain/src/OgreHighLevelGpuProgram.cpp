@@ -110,6 +110,19 @@ namespace Ogre
         return memSize;
     }
 
+    void HighLevelGpuProgram::setPreprocessorDefines(const String& defines)
+    {
+        mPreprocessorDefines = defines;
+
+        if (mConstantPreprocessorDefines.empty())
+            return;
+
+        if (!mPreprocessorDefines.empty())
+            mPreprocessorDefines += ";";
+
+        mPreprocessorDefines += mConstantPreprocessorDefines;
+    }
+
     //---------------------------------------------------------------------------
     void HighLevelGpuProgram::loadHighLevel(void)
     {

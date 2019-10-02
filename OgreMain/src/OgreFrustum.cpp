@@ -380,7 +380,11 @@ namespace Ogre {
 
             Real inv_w = 1 / (right - left);
             Real inv_h = 1 / (top - bottom);
+#ifdef OGRE_CONFIG_ENABLE_REVERSE_Z_BUFFER
+            Real inv_d = 1 / (mNearDist - mFarDist);
+#else
             Real inv_d = 1 / (mFarDist - mNearDist);
+#endif
 
             // Recalc if frustum params changed
             if (mProjType == PT_PERSPECTIVE)
@@ -453,7 +457,11 @@ namespace Ogre {
                     Vector4 qVec;
                     qVec.x = (Math::Sign(plane.normal.x) + mProjMatrix[0][2]) / mProjMatrix[0][0];
                     qVec.y = (Math::Sign(plane.normal.y) + mProjMatrix[1][2]) / mProjMatrix[1][1];
+#ifdef OGRE_CONFIG_ENABLE_REVERSE_Z_BUFFER
+                    qVec.z = 1;
+#else
                     qVec.z = -1;
+#endif
                     qVec.w = (1 + mProjMatrix[2][2]) / mProjMatrix[2][3];
 
                     // Calculate the scaled plane vector
@@ -463,7 +471,11 @@ namespace Ogre {
                     // Replace the third row of the projection matrix
                     mProjMatrix[2][0] = c.x;
                     mProjMatrix[2][1] = c.y;
+#ifdef OGRE_CONFIG_ENABLE_REVERSE_Z_BUFFER
+                    mProjMatrix[2][2] = c.z - 1;
+#else
                     mProjMatrix[2][2] = c.z + 1;
+#endif
                     mProjMatrix[2][3] = c.w; 
                 }
             } // perspective
