@@ -67,6 +67,7 @@
     #include "PCZTestApp.h"
 #endif
 #include "PBR.h"
+#include "PBR_filament.h"
 #include "PNTrianglesTessellation.h"
 #ifdef OGRE_BUILD_COMPONENT_RTSHADERSYSTEM
 #   include "ShaderSystem.h"
@@ -141,6 +142,7 @@ DefaultSamplesPlugin::DefaultSamplesPlugin() : SamplePlugin("DefaultSamplesPlugi
     // the samples below require shaders
     addSample(new Sample_Tessellation);
     addSample(new Sample_PBR);
+    addSample(new Sample_PBR_filament);
 #if defined(OGRE_BUILD_COMPONENT_RTSHADERSYSTEM) && OGRE_PLATFORM != OGRE_PLATFORM_WINRT
     addSample(new Sample_ShaderSystem);
     addSample(new Sample_ShaderSystemTexturedFog);
