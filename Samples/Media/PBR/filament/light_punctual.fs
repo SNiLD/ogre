@@ -113,6 +113,7 @@ float getAngleAttenuation(const vec3 lightDir, const vec3 l, const vec2 scaleOff
  */
 void setupPunctualLight(inout Light light, const highp vec4 positionFalloff) {
     highp vec3 worldPosition = vertex_worldPosition;
+    // SNiLD: Modified for Ogre to take into account if it's directional light or not.
     highp vec3 posToLight = positionFalloff.xyz - worldPosition * positionFalloff.w;
     light.l = normalize(posToLight);
     // N.B. For some unexplained reason positionFalloff.w == 1.0 for directional lights (should be 0.0)
@@ -130,7 +131,7 @@ void setupPunctualLight(inout Light light, const highp vec4 positionFalloff) {
  */
 Light getSpotLight(uint index) {
     Light light;
-    // We dont store light information in froxels
+    // SNiLD: Modified for Ogre to use light parameters directly instead of using froxels.
     // ivec2 texCoord = getRecordTexCoord(index);
     // uint lightIndex = texelFetch(light_records, texCoord, 0).r;
 
@@ -188,7 +189,7 @@ Light getPointLight(uint index) {
  * parameter, as linear HDR RGB.
  */
 void evaluatePunctualLights(const PixelParams pixel, inout vec3 color) {
-// We don't have froxels for lighting.
+// SNiLD: Modified for Ogre to use lights directly instead of using froxels.
 /*
     // Fetch the light information stored in the froxel that contains the
     // current fragment

@@ -6,6 +6,8 @@ float evaluateSSAO() {
 #ifdef HAS_SSAO
     // TODO: Don't use gl_FragCoord.xy, use the view bounds
     // vec2 uv = gl_FragCoord.xy * frameUniforms.resolution.zw;
+    // SNiLD: Modified for Ogre because viewportWidth and viewportHeight
+    //        come from different variables.
     vec2 uv = vec2(gl_FragCoord.x * frameUniforms.viewportWidth,
                    1.0 - gl_FragCoord.y * frameUniforms.viewportHeight);
     return textureLod(light_ssao, uv, 0.0).r;

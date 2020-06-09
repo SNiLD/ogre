@@ -43,9 +43,11 @@ mat4 getClipSpaceTransform(const MaterialVertexInputs material) {
 
 void initMaterialVertex(out MaterialVertexInputs material) {
 #ifdef HAS_ATTRIBUTE_COLOR
+    // SNiLD: Modified for Ogre mesh_color => colour
     material.color = colour;
 #endif
 #ifdef HAS_ATTRIBUTE_UV0
+    // SNiLD: Modified for Ogre mesh_uv0 => uv0
     #ifdef FLIP_UV_ATTRIBUTE
     material.uv0 = vec2(uv0.x, 1.0 - uv0.y);
     #else
@@ -53,6 +55,7 @@ void initMaterialVertex(out MaterialVertexInputs material) {
     #endif
 #endif
 #ifdef HAS_ATTRIBUTE_UV1
+    // SNiLD: Modified for Ogre mesh_uv1 => uv1
     #ifdef FLIP_UV_ATTRIBUTE
     material.uv1 = vec2(uv1.x, 1.0 - uv1.y);
     #else

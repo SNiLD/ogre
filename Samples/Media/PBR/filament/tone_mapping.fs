@@ -21,6 +21,7 @@
     #define TONE_MAPPING_OPERATOR     TONE_MAPPING_ACES
 #endif
 
+// SNiLD Added TONE_MAPPING_FILMIC_ALU as default tone mapping for Ogre
 #define TONE_MAPPING_OPERATOR TONE_MAPPING_FILMIC_ALU
 
 //------------------------------------------------------------------------------

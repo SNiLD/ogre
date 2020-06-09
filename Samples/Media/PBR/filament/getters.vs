@@ -65,6 +65,7 @@ void skinPosition(inout vec3 p, const uvec4 ids, const vec4 weights) {
 
 /** @public-api */
 vec4 getPosition() {
+    // SNiLD: Modified for Ogre: mesh_position => position
     vec4 pos = position;
 
 #if defined(HAS_SKINNING_OR_MORPHING)

@@ -27,6 +27,8 @@ vec3 decodeDataForIBL(const vec4 data) {
 
 vec3 PrefilteredDFG_LUT(float lod, float NoV) {
     // coord = sqrt(linear_roughness), which is the mapping used by cmgen.
+    // SNiLD: Y is flipped for Ogre because there is no tool to flip the actual
+    //        texture that is in 16-bit float RGBA DDS format.
     return textureLod(light_iblDFG, vec2(NoV, 1.0 - lod), 0.0).rgb;
 }
 
